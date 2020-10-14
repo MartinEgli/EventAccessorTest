@@ -12,10 +12,9 @@ namespace EventAccessorTest
 
         public ViewModel2()
         {
-            Command = new RelayCommand((_) => Inner.Publish());
             Inner = new InnerViewModel1();
+            Command = new RelayCommand((_) => Inner.Publish());
             Inner.PropertyChanged += (sender, args) => OnPropertyChanged(args.PropertyName);
         }
-
     }
 }
