@@ -1,0 +1,29 @@
+﻿<Window
+    x:Class="EventAccessorTest.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:EventAccessorTest"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    d:DataContext="{d:DesignData ViewModel}"
+    mc:Ignorable="d">
+    <StackPanel>
+        <Button Command="{Binding ViewModel1.Command}" Content="Command" />
+        <TextBlock Text="{Binding ViewModel1.Text}" />
+        <TextBlock Text="{Binding ViewModel1.Inner.Text}" />
+        <TextBlock Text="{Binding ViewModel1.Inner.Index}" />
+
+        <Button Command="{Binding ViewModel2.Command}" Content="Command" />
+        <TextBlock Text="{Binding ViewModel2.Text}" />
+        <TextBlock Text="{Binding ViewModel2.Inner.Text}" />
+        <TextBlock Text="{Binding ViewModel2.Inner.Index}" />
+
+        <Button Command="{Binding ViewModel3.Command}" Content="Command" />
+        <TextBlock Text="{Binding ViewModel3.Text}" />
+        <TextBlock Text="{Binding ViewModel3.Inner.Text}" />
+        <TextBlock Text="{Binding ViewModel3.Inner.Index}" />
+    </StackPanel>
+</Window>
