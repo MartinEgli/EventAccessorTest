@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace EventAccessorTest
 {
-    public class ViewModel1 : INotifyPropertyChanged
+    public class EventViewModelWithAccessorToInner : INotifyPropertyChanged
     {
         public InnerViewModel1 Inner { get; set; }
 
@@ -17,7 +17,7 @@ namespace EventAccessorTest
 
         public ICommand Command { get; set; }
 
-        public ViewModel1()
+        public EventViewModelWithAccessorToInner()
         {
             Inner = new InnerViewModel1();
             Command = new RelayCommand((_) => Inner.Publish());

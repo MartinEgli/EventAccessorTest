@@ -6,13 +6,13 @@ namespace EventAccessorTest
 {
     public class InnerViewModel3 : INotifyPropertyChanged
     {
-        private readonly ViewModel3 _parent;
+        private readonly EventViewModelWithAccessorToInnerAndParentAsSender _parent;
 
         private int _index;
 
         private string _text = "InnerViewModel";
 
-        public InnerViewModel3(ViewModel3 parent)
+        public InnerViewModel3(EventViewModelWithAccessorToInnerAndParentAsSender parent)
         {
             _parent = parent;
         }

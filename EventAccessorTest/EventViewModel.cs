@@ -2,7 +2,7 @@
 
 namespace EventAccessorTest
 {
-    public class ViewModel2 : BindableBase
+    public class EventViewModel : BindableBase
     {
         public InnerViewModel1 Inner { get; set; }
 
@@ -10,7 +10,7 @@ namespace EventAccessorTest
 
         public ICommand Command { get; set; }
 
-        public ViewModel2()
+        public EventViewModel()
         {
             Inner = new InnerViewModel1();
             Command = new RelayCommand((_) => Inner.Publish());

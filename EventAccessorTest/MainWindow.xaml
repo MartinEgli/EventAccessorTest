@@ -8,22 +8,54 @@
     Title="MainWindow"
     Width="800"
     Height="450"
-    d:DataContext="{d:DesignData ViewModel}"
+    d:DataContext="{d:DesignInstance local:ViewModel}"
     mc:Ignorable="d">
     <StackPanel>
-        <Button Command="{Binding ViewModel1.Command}" Content="Command" />
-        <TextBlock Text="{Binding ViewModel1.Text}" />
-        <TextBlock Text="{Binding ViewModel1.Inner.Text}" />
-        <TextBlock Text="{Binding ViewModel1.Inner.Index}" />
+        <TextBlock>Event with cascaded event call</TextBlock>
+        <Button Command="{Binding EventViewModel.Command}" Content="Command" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Text:</TextBlock>
+            <TextBlock Text="{Binding EventViewModel.Text}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Inner text:</TextBlock>
+            <TextBlock Text="{Binding EventViewModel.Inner.Text}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Inner index:</TextBlock>
+            <TextBlock Text="{Binding EventViewModel.Inner.Index}" />
+        </StackPanel>
+        <TextBlock />
 
-        <Button Command="{Binding ViewModel2.Command}" Content="Command" />
-        <TextBlock Text="{Binding ViewModel2.Text}" />
-        <TextBlock Text="{Binding ViewModel2.Inner.Text}" />
-        <TextBlock Text="{Binding ViewModel2.Inner.Index}" />
+        <TextBlock>Event with accessor to inner object.</TextBlock>
+        <Button Command="{Binding EventViewModelWithAccessorToInner.Command}" Content="Command" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Text:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithAccessorToInner.Text}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Inner text:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithAccessorToInner.Inner.Text}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Inner index:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithAccessorToInner.Inner.Index}" />
+        </StackPanel>
+        <TextBlock />
 
-        <Button Command="{Binding ViewModel3.Command}" Content="Command" />
-        <TextBlock Text="{Binding ViewModel3.Text}" />
-        <TextBlock Text="{Binding ViewModel3.Inner.Text}" />
-        <TextBlock Text="{Binding ViewModel3.Inner.Index}" />
+        <TextBlock>Event with accessor to inner object and parent as sender.</TextBlock>
+        <Button Command="{Binding EventViewModelWithAccessorToInnerAndParentAsSender.Command}" Content="Command" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Text:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithAccessorToInnerAndParentAsSender.Text}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Inner text:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithAccessorToInnerAndParentAsSender.Inner.Text}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Inner index:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithAccessorToInnerAndParentAsSender.Inner.Index}" />
+        </StackPanel>
     </StackPanel>
 </Window>
