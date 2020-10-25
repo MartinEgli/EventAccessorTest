@@ -8,10 +8,7 @@ namespace EventAccessorTest
     {
         private readonly object _sender;
 
-        public PropertyChangedEventHandlerMapper(object sender)
-        {
-            _sender = sender;
-        }
+        public PropertyChangedEventHandlerMapper(object sender) => _sender = sender;
 
         public void Add([NotNull] PropertyChangedEventHandler value, [NotNull] Action<PropertyChangedEventHandler> subscribe,
             [NotNull] Action<PropertyChangedEventHandler> unsubscribe) =>

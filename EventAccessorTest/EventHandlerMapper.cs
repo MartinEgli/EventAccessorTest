@@ -8,10 +8,7 @@ namespace EventAccessorTest
     {
         private readonly object _sender;
 
-        public EventHandlerMapper(object sender)
-        {
-            _sender = sender;
-        }
+        public EventHandlerMapper(object sender) => _sender = sender;
 
         public void Add([NotNull] EventHandler<TEventArgs> value, [NotNull] Action<EventHandler<TEventArgs>> subscribe,
             [NotNull] Action<EventHandler<TEventArgs>> unsubscribe) =>
