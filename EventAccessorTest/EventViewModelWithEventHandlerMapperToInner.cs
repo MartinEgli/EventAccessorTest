@@ -1,0 +1,33 @@
+﻿using System.ComponentModel;
+using System.Windows.Input;
+
+namespace EventAccessorTest
+{
+    public class EventViewModelWithEventHandlerMapperToInner : INotifyPropertyChanged
+    {
+        private readonly PropertyChangedEventHandlerMapper _propertyChangedChangedEventHandlerMapper;
+        public EventViewModelWithEventHandlerMapperToInner()
+        {
+            Inner = new InnerViewModel1();
+            Command = new RelayCommand((_) => Inner.Publish());
+            _propertyChangedChangedEventHandlerMapper = new PropertyChangedEventHandlerMapper(this);
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add => _propertyChangedChangedEventHandlerMapper.Add(value,
+                handler => Inner.PropertyChanged += handler,
+                handler => Inner.PropertyChanged -= handler);
+            remove => _propertyChangedChangedEventHandlerMapper.Remove(value);
+        }
+
+        public ICommand Command { get; set; }
+        public InnerViewModel1 Inner { get; set; }
+
+        public string Text => Inner.Text;
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+        }
+    }
+}

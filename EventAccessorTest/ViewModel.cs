@@ -5,5 +5,8 @@
         public EventViewModelWithAccessorToInner EventViewModelWithAccessorToInner { get; } = new EventViewModelWithAccessorToInner();
         public EventViewModel EventViewModel { get; } = new EventViewModel();
         public EventViewModelWithAccessorToInnerAndParentAsSender EventViewModelWithAccessorToInnerAndParentAsSender { get; } = new EventViewModelWithAccessorToInnerAndParentAsSender();
+
+        public EventViewModelWithEventHandlerMapperToInner EventViewModelWithMapperToInner { get; } = new EventViewModelWithEventHandlerMapperToInner();
+       
     }
 }

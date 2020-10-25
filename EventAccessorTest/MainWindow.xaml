@@ -57,5 +57,21 @@
             <TextBlock>Inner index:</TextBlock>
             <TextBlock Text="{Binding EventViewModelWithAccessorToInnerAndParentAsSender.Inner.Index}" />
         </StackPanel>
+        <TextBlock />
+
+        <TextBlock>Event with mapper to inner object.</TextBlock>
+        <Button Command="{Binding EventViewModelWithMapperToInner.Command}" Content="Command" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Text:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithMapperToInner.Text}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Inner text:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithMapperToInner.Inner.Text}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Inner index:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithMapperToInner.Inner.Index}" />
+        </StackPanel>
     </StackPanel>
 </Window>
