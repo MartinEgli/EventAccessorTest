@@ -10,15 +10,14 @@ namespace EventAccessorTest
         {
             Inner = new InnerViewModel1();
             Command = new RelayCommand((_) => Inner.Publish());
-            _propertyChangedChangedEventHandlerMapper = new PropertyChangedEventHandlerMapper(this);
+            _propertyChangedChangedEventHandlerMapper = new PropertyChangedEventHandlerMapper(handler => Inner.PropertyChanged += handler,
+                handler => Inner.PropertyChanged -= handler,this);
             PropertyChanged += OnPropertyChanged;
         }
 
         public event PropertyChangedEventHandler PropertyChanged
         {
-            add => _propertyChangedChangedEventHandlerMapper.Add(value,
-                handler => Inner.PropertyChanged += handler,
-                handler => Inner.PropertyChanged -= handler);
+            add => _propertyChangedChangedEventHandlerMapper.Add(value);
             remove => _propertyChangedChangedEventHandlerMapper.Remove(value);
         }
 

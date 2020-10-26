@@ -1,17 +1,18 @@
-﻿using System;
+﻿using EventAccessorTest.Annotations;
+using System;
 using System.ComponentModel;
-using EventAccessorTest.Annotations;
 
 namespace EventAccessorTest
 {
     public class PropertyChangingEventHandlerMapper : EventHandlerMapperBase<PropertyChangingEventHandler>
     {
-        private readonly object _sender;
+        public PropertyChangingEventHandlerMapper([NotNull] Action<PropertyChangingEventHandler> subscribe,
+            [NotNull] Action<PropertyChangingEventHandler> unsubscribe, [CanBeNull] object sender = null) : base(
+            subscribe, unsubscribe, sender)
+        {
+        }
 
-        public PropertyChangingEventHandlerMapper(object sender) => _sender = sender;
-
-        public void Add([NotNull] PropertyChangingEventHandler value, [NotNull] Action<PropertyChangingEventHandler> subscribe,
-            [NotNull] Action<PropertyChangingEventHandler> unsubscribe) =>
-            Add(value, subscribe, unsubscribe, (s, e) => value(_sender, e));
+        public void Add([NotNull] PropertyChangingEventHandler value) =>
+            Add(value, (s, e) => value(Sender, e));
     }
 }
