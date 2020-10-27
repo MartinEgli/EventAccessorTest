@@ -23,7 +23,10 @@ namespace EventAccessorTest
             get => _index;
             set
             {
-                if (value == _index) return;
+                if (value == _index)
+                {
+                    return;
+                }
                 _index = value;
                 OnPropertyChanged();
             }

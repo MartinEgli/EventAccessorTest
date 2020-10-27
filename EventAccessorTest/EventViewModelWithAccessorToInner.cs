@@ -21,10 +21,10 @@ namespace EventAccessorTest
         {
             Inner = new InnerViewModel1();
             Command = new RelayCommand((_) => Inner.Publish());
-            PropertyChanged += OnPropertyChanged;
+            PropertyChanged += CallPropertyChanged;
         }
 
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void CallPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
         }
     }

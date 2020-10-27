@@ -73,5 +73,10 @@
             <TextBlock>Inner index:</TextBlock>
             <TextBlock Text="{Binding EventViewModelWithMapperToInner.Inner.Index}" />
         </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Count:</TextBlock>
+            <TextBlock Text="{Binding EventViewModelWithMapperToInner.PropertyChangedCount}" />
+        </StackPanel>
     </StackPanel>
 </Window>

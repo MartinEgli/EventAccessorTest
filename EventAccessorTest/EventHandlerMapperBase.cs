@@ -1,36 +1,11 @@
 ﻿using EventAccessorTest.Annotations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+using System.Collections;
 
 namespace EventAccessorTest
 {
     public abstract class EventHandlerMapperBase<TEventHandler>
     {
-        private class EventHandleStruct
-        {
-            public EventHandleStruct(TEventHandler eventHandler)
-            {
-                EventHandler = eventHandler;
-                Count = 0;
-            }
-
-            public TEventHandler EventHandler { get; }
-
-            public void Increment()
-            {
-                Count++;
-            }
-
-            public void Decrement()
-            {
-                Count--;
-            }
-            public int Count { get; private set; }
-        }
-
-        [NotNull] private readonly Dictionary<TEventHandler, EventHandleStruct> _eventHandlerDictionary = new Dictionary<TEventHandler, EventHandleStruct>();
         [NotNull] private readonly Action<TEventHandler> _subscribe;
         [NotNull] private readonly Action<TEventHandler> _unsubscribe;
 
@@ -46,35 +21,25 @@ namespace EventAccessorTest
 
         [CanBeNull] public object Sender { get; }
 
+        [NotNull]
+        protected EventHandleCollection<TEventHandler> Collection { get; } = new EventHandleCollection<TEventHandler>();
+
         public void Add([NotNull] TEventHandler value,
             [NotNull] TEventHandler inner)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            if (!_eventHandlerDictionary.TryGetValue(value, out var eventTuple))
-            {
-                eventTuple = new EventHandleStruct(inner);
-                _eventHandlerDictionary.Add(value, eventTuple);
-            }
-            eventTuple.Increment();
+            Collection.Add(value, inner);
             _subscribe(inner);
         }
 
-        public bool Remove([NotNull] TEventHandler value)
+        public void Remove([NotNull] TEventHandler value)
         {
-            if (!_eventHandlerDictionary.TryGetValue(value, out var eventTuple))
+            Collection.Remove(value, out var inner);
+            if (inner != null)
             {
-                return false;
+                _unsubscribe(inner);
             }
-
-            if (eventTuple.Count == 1)
-            {
-                _eventHandlerDictionary.Remove(value);
-            }
-            eventTuple.Decrement();
-            
-            _unsubscribe(eventTuple.EventHandler);
-            return true;
         }
+
+        
     }
 }

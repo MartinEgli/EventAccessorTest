@@ -5,9 +5,18 @@ namespace EventAccessorTest
 {
     public class EventViewModelWithAccessorToInnerAndParentAsSender : INotifyPropertyChanged
     {
+        public EventViewModelWithAccessorToInnerAndParentAsSender()
+        {
+            Inner = new InnerViewModel3(this);
+            Command = new RelayCommand(_ => Inner.Publish());
+            PropertyChanged += CallPropertyChanged;
+        }
+
         public InnerViewModel3 Inner { get; set; }
 
         public string Text => Inner.Text;
+
+        public ICommand Command { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -15,16 +24,7 @@ namespace EventAccessorTest
             remove => Inner.PropertyChanged -= value;
         }
 
-        public ICommand Command { get; set; }
-
-        public EventViewModelWithAccessorToInnerAndParentAsSender()
-        {
-            Inner = new InnerViewModel3(this);
-            Command = new RelayCommand((_) => Inner.Publish());
-            PropertyChanged += OnPropertyChanged;
-        }
-
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void CallPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
         }
     }
