@@ -15,6 +15,6 @@ namespace EventAccessorTest
         }
 
         public void Add([NotNull] EventHandler<TEventArgs> value) =>
-            Add(value, (s, e) => value(Sender, e));
+            Add(value, (s, args) => value(Sender, args));
     }
 }

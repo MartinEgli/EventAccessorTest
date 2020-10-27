@@ -13,6 +13,6 @@ namespace EventAccessorTest
         }
 
         public void Add([NotNull] PropertyChangingEventHandler value) =>
-            Add(value, (s, e) => value(Sender, e));
+            Add(value, (s, args) => value(Sender, args));
     }
 }
